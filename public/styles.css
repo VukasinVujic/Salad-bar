@@ -24,3 +24,30 @@ body {
   color: white;
   font-size: 1rem;
 }
+
+.cardView {
+  width: 47%;
+  text-align: left;
+  background: white;
+  display: inline-block;
+  margin: 1%;
+}
+
+.cardView > img {
+  max-width: 100%;
+}
+
+.cardView > p {
+  width: 100%;
+}
+
+.cardView > p.title {
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 600px) {
+  .cardView {
+    width: 100%;
+    display: block;
+  }
+}

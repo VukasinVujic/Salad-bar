@@ -17,9 +17,7 @@ const IngredientContainer = () => {
   return (
     <div>
       {images.map((picture: Picture, index: number) => {
-        return (
-          <SingleIngredient route={picture.default} key={index} index={index} />
-        );
+        return <div></div>;
       })}
     </div>
   );
