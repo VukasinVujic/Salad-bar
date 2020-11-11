@@ -1,4 +1,11 @@
 import React from "react";
+import SingleIngredient from "./SingleIngredient";
+
+interface Picture {
+  default: string;
+  __esModule: boolean;
+  // : String;
+}
 
 const IngredientContainer = () => {
   function importAll(r: any) {
@@ -7,17 +14,11 @@ const IngredientContainer = () => {
 
   const images = importAll(require.context("./images", false, /\.png$/));
 
-  console.log(images);
   return (
     <div>
-      {images.map((picture: any, index: number) => {
+      {images.map((picture: Picture, index: number) => {
         return (
-          <img
-            src={picture.default}
-            alt=""
-            key={index}
-            className="ingredient-picture"
-          />
+          <SingleIngredient route={picture.default} key={index} index={index} />
         );
       })}
     </div>
