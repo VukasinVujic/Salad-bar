@@ -2,6 +2,7 @@ import React from "react";
 // import IngredientContainer from "./components/IngredientContainer";
 import Navbar from "./components/NavBar";
 // import SingleIngredient from "./components/SingleIngredient";
+
 function App() {
   return (
     <div>

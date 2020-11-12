@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
+import { store } from "../store";
 
 interface Ingredient {
   id: string;
@@ -20,13 +21,17 @@ const NavbAr = () => {
   const [ingredients, setIngredients] = useState<Ingredient[]>([]);
   const [salads, setSalads] = useState<Salad[]>([]);
   const [showIngredient, setShowIngredient] = useState(true);
+  const globalState = useContext(store);
+  const { dispatch } = globalState;
 
+  console.log(globalState);
   useEffect(() => {
     (async () => {
       const response = await axios.get(
         "https://5faa7264b5c645001602a988.mockapi.io/ingredient"
       );
       setIngredients(response.data);
+      dispatch({ type: "SEND_LIST_INGREDIENT", payload: response.data });
     })();
     (async () => {
       const response = await axios.get(
@@ -38,17 +43,32 @@ const NavbAr = () => {
 
   const showSalads = () => {
     setShowIngredient(true);
+    dispatch({ type: "SEND_LIST_INGREDIENT", payload: ingredients });
   };
 
   const showIngredients = () => {
     setShowIngredient(false);
+    dispatch({ type: "SEND_LIST_INGREDIENT", payload: salads });
   };
+
+  // const lala = () => {
+  //   console.log("aaaaaa");
+  // };
   const showList = () => {
     let saladOrIngredient: (Ingredient | Salad)[] = showIngredient
       ? ingredients
       : salads;
     return saladOrIngredient.map((value) => {
-      return <li key={value.id}>{value.name}</li>;
+      return (
+        <li
+          key={value.id}
+          // onClick={() => {
+          //   lala();
+          // }}
+        >
+          {value.name}
+        </li>
+      );
     });
   };
 

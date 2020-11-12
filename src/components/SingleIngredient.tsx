@@ -37,7 +37,7 @@ const SingleIngredient = (props: Props) => {
         }/${props.id}`
       );
       const responseData = response.data;
-      setIngredient(responseData);
+      // setIngredient(responseData);
     })();
   }, [props.id, props.isIngredient]);
 
