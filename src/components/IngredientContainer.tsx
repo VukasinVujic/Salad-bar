@@ -1,10 +1,8 @@
 import React from "react";
-import SingleIngredient from "./SingleIngredient";
 
 interface Picture {
   default: string;
   __esModule: boolean;
-  // : String;
 }
 
 const IngredientContainer = () => {

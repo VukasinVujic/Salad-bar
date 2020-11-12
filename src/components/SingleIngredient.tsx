@@ -23,9 +23,9 @@ const SingleIngredient = (props: Props) => {
   });
 
   const getTags = () => {
-    return ingredient.tags.map((value) => {
+    return ingredient.tags.map((index, value) => {
       console.log(ingredient.tags);
-      return <li>{value}</li>;
+      return <li key={index}>{value}</li>;
     });
   };
 
@@ -37,10 +37,9 @@ const SingleIngredient = (props: Props) => {
         }/${props.id}`
       );
       const responseData = response.data;
-      console.log(responseData);
       setIngredient(responseData);
     })();
-  }, [props.id]);
+  }, [props.id, props.isIngredient]);
 
   return (
     <div className="cardView" onClick={props.onClick}>
