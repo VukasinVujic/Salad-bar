@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useContext } from "react";
+import { store } from "../store";
 
 interface Props {
-  id: Number;
-  isIngredient: Boolean;
+  index: number;
   onClick: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
 
@@ -15,31 +14,15 @@ interface Ingredient {
 }
 
 const SingleIngredient = (props: Props) => {
-  const [ingredient, setIngredient] = useState<Ingredient>({
-    name: "Loading...",
-    image: "",
-    calories: 0,
-    tags: [],
-  });
+  const globalState = useContext(store);
+  const ingredient = globalState.state.list[props.index] as Ingredient;
 
   const getTags = () => {
-    return ingredient.tags.map((index, value) => {
+    return ingredient.tags.map((value, index) => {
       console.log(ingredient.tags);
       return <li key={index}>{value}</li>;
     });
   };
-
-  useEffect(() => {
-    (async () => {
-      const response = await axios.get(
-        `https://5faa7264b5c645001602a988.mockapi.io/${
-          props.isIngredient ? "ingredient" : "salad"
-        }/${props.id}`
-      );
-      const responseData = response.data;
-      setIngredient(responseData);
-    })();
-  }, [props.id, props.isIngredient]);
 
   return (
     <div className="cardView" onClick={props.onClick}>

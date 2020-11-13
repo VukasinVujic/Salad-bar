@@ -1,8 +1,10 @@
 import React, { useState, useContext } from "react";
 import { store } from "../store";
+import SingleIngredient from "./SingleIngredient";
+import SingleSalad from "./SingleSalad";
 
 interface Ingredient {
-  id: string;
+  id: number;
   name: string;
   image: string;
   calories: Number;
@@ -10,7 +12,7 @@ interface Ingredient {
 }
 
 interface Salad {
-  id: string;
+  id: number;
   name: string;
   tags: [];
   ingredients: [];
@@ -21,20 +23,6 @@ interface Salad {
 const ListSaladIngredient = () => {
   const [clicked, setClicked] = useState<number[]>([]);
   const globalState = useContext(store);
-  const { dispatch } = globalState;
-
-  const giveColor = (index: number) => {
-    // console.log("new array" + newArray);
-    // console.log("clicked " + clicked);
-
-    if (clicked.includes(index)) {
-      console.log("blue");
-      return "blue";
-    } else {
-      console.log("whitee");
-      return "white";
-    }
-  };
   const showSingleItem = (arg: string) => {
     // console.log(arg);
   };
@@ -53,20 +41,30 @@ const ListSaladIngredient = () => {
   const showList = () => {
     return globalState.state.list.map(
       (value: Ingredient | Salad, index: number) => {
-        return (
-          <li
-            className="single-item"
-            style={{ background: giveColor(index) }}
-            key={value.id}
-            onClick={() => {
-              showSingleItem(globalState.state.list[index].id);
-              toggle(index);
-            }}
-          >
-            {/* {globalState.state.list[index].id} */}
-            {value.name}
-          </li>
-        );
+        if (globalState.state.isIngredient) {
+          return (
+            <SingleIngredient
+              index={index}
+              key={value.id}
+              onClick={() => {
+                showSingleItem(globalState.state.list[index].id);
+                toggle(index);
+              }}
+            />
+          );
+        } else {
+          return (
+            <SingleSalad
+              //   style={{ background: giveColor(index) }}
+              index={index}
+              key={value.id}
+              onClick={() => {
+                showSingleItem(globalState.state.list[index].id);
+                toggle(index);
+              }}
+            />
+          );
+        }
       }
     );
   };

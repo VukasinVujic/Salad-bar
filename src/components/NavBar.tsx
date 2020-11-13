@@ -30,7 +30,11 @@ const NavbAr = () => {
         "https://5faa7264b5c645001602a988.mockapi.io/ingredient"
       );
       setIngredients(response.data);
-      dispatch({ type: "SEND_LIST_INGREDIENT", payload: response.data });
+      dispatch({
+        type: "SEND_LIST_INGREDIENT",
+        payload: response.data,
+        showIngredient: true,
+      });
     })();
     (async () => {
       const response = await axios.get(
@@ -42,12 +46,20 @@ const NavbAr = () => {
 
   const showSalads = () => {
     setShowIngredient(true);
-    dispatch({ type: "SEND_LIST_INGREDIENT", payload: ingredients });
+    dispatch({
+      type: "SEND_LIST_INGREDIENT",
+      payload: ingredients,
+      showIngredient: true,
+    });
   };
 
   const showIngredients = () => {
     setShowIngredient(false);
-    dispatch({ type: "SEND_LIST_INGREDIENT", payload: salads });
+    dispatch({
+      type: "SEND_LIST_INGREDIENT",
+      payload: salads,
+      showIngredient: false,
+    });
   };
 
   return (
