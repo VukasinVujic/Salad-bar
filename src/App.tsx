@@ -3,18 +3,21 @@ import React from "react";
 import Navbar from "./components/NavBar";
 // import SingleIngredient from "./components/SingleIngredient";
 import ListSaladIngredient from "./components/ListSaladIngredient";
+import AddNewIngred from "./components/AddNewIngred";
+import { Router, Route, Switch } from "react-router-dom";
+import history from "./history";
+
 function App() {
   return (
     <div>
-      <h1>Naslov</h1>
-      <Navbar />
-      <ListSaladIngredient />
-      {/* <SingleIngredient
-        id={1}
-        isIngredient={true}
-        onClick={() => console.log("On click")}
-      /> */}
-      {/* <IngredientContainer /> */}
+      <Router history={history}>
+        <h1>Naslov</h1>
+        <Navbar />
+        <Switch>
+          <Route path="/" exact component={ListSaladIngredient} />
+          <Route path="/add" exact component={AddNewIngred} />
+        </Switch>
+      </Router>
     </div>
   );
 }

@@ -27,10 +27,12 @@ body {
 
 .cardView {
   width: 28vw;
+  /* height: 30vw; */
   text-align: left;
   background: white;
   display: inline-block;
   margin: 1%;
+  margin-bottom: 12%;
   cursor: pointer;
 }
 
@@ -40,10 +42,20 @@ body {
 
 .cardView > p {
   width: 100%;
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.cardView > ul > li {
+  width: 100%;
+  padding-left: 5rem;
+  padding-right: 5rem;
+  list-style-type: none;
 }
 
 .cardView > p.title {
   font-weight: bold;
+  text-align: center;
 }
 
 @media only screen and (max-width: 600px) {
@@ -51,4 +63,36 @@ body {
     width: 100%;
     display: block;
   }
+}
+
+.left-btn {
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
+}
+
+.right-btn {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.btn-toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.plus-button {
+  width: 5vw;
+  height: 5vw;
+  margin-right: 2vw;
+  margin-top: auto;
+  margin-bottom: auto;
+  border-radius: 50%;
+  font-weight: bolder;
+  font-size: 1.1rem;
+  outline: none;
+}
+.plus-button-container {
+  display: relative;
 }

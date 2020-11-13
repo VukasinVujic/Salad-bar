@@ -62,15 +62,36 @@ const NavbAr = () => {
     });
   };
 
+  const addSaldIngredient = () => {
+    console.log("aaaaaa");
+  };
+
   return (
     <div>
       <h1>Navbar</h1>
-      <button className="button-container" onClick={() => showSalads()}>
-        Ingredients
-      </button>
-      <button className="button-container" onClick={() => showIngredients()}>
-        Salads
-      </button>
+      <div className="btn-toolbar">
+        <div className="left-btn">
+          <button className="button-container" onClick={() => showSalads()}>
+            Ingredients
+          </button>
+          <button
+            className="button-container"
+            onClick={() => showIngredients()}
+          >
+            Salads
+          </button>
+        </div>
+        <div className="right-btn">
+          <div className="plus-button-container">
+            <button
+              onClick={() => addSaldIngredient()}
+              className="button-container plus-button"
+            >
+              +
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

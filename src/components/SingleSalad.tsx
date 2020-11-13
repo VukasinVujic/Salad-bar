@@ -22,7 +22,6 @@ interface Salad {
 
 const SingleSalad = (props: Props) => {
   const globalState = useContext(store);
-  const { dispatch } = globalState;
   const salad = globalState.state.list[props.index] as Salad;
   console.log(salad);
   const getTags = () => {
@@ -49,7 +48,7 @@ const SingleSalad = (props: Props) => {
         src="https://lepaisrecna.rs/Picture/63259/jpeg/jagode_ili_jabuke_otriveno_koje_voce_ima_vise_otrova_u_sebi_evo_koje_voce_se_najvise_prska_opasnim_hemikalijama_629426525"
       ></img>
       <p>
-        {/* {salad.ingredients.reduce((acc, value) => acc + value.calories, 0)}{" "} */}
+        {salad.ingredients.reduce((acc, value) => acc + value.calories, 0)}{" "}
         calories
       </p>
       <p> Tags: </p>
