@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { store } from "../store";
 import SingleIngredient from "./SingleIngredient";
 import SingleSalad from "./SingleSalad";
+import Navbar from "./NavBar";
 
 interface Ingredient {
   id: number;
@@ -71,6 +72,7 @@ const ListSaladIngredient = () => {
 
   return (
     <div>
+      <Navbar />
       <ul>{globalState.state.list && showList()}</ul>
     </div>
   );

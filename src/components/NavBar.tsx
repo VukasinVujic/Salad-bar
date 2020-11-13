@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { store } from "../store";
+import history from "../history";
 
 interface Ingredient {
   id: string;
@@ -62,13 +63,12 @@ const NavbAr = () => {
     });
   };
 
-  const addSaldIngredient = () => {
-    console.log("aaaaaa");
+  const addIngredient = () => {
+    history.push("/add");
   };
 
   return (
     <div>
-      <h1>Navbar</h1>
       <div className="btn-toolbar">
         <div className="left-btn">
           <button className="button-container" onClick={() => showSalads()}>
@@ -84,7 +84,7 @@ const NavbAr = () => {
         <div className="right-btn">
           <div className="plus-button-container">
             <button
-              onClick={() => addSaldIngredient()}
+              onClick={() => addIngredient()}
               className="button-container plus-button"
             >
               +
