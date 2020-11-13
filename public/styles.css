@@ -26,11 +26,12 @@ body {
 }
 
 .cardView {
-  width: 47%;
+  width: 28vw;
   text-align: left;
   background: white;
   display: inline-block;
   margin: 1%;
+  cursor: pointer;
 }
 
 .cardView > img {
@@ -50,8 +51,4 @@ body {
     width: 100%;
     display: block;
   }
-}
-
-.single-item {
-  cursor: pointer;
 }

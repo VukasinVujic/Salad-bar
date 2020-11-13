@@ -10,12 +10,23 @@ type Children = {
 
 const StateProvider = ({ children }: Children) => {
   const [state, dispatch] = useReducer(
-    (state: any, action: { type: string; payload: [] }) => {
+    (
+      state: any,
+      action: { type: string; payload: []; showIngredient: boolean }
+    ) => {
       switch (action.type) {
         case "SEND_LIST_INGREDIENT":
-          return { ...state, list: action.payload };
+          return {
+            ...state,
+            list: action.payload,
+            isIngredient: action.showIngredient,
+          };
         case "SEND_LIST_SALADS":
-          return { ...state, list: action.payload };
+          return {
+            ...state,
+            list: action.payload,
+            isIngredient: action.showIngredient,
+          };
         default:
           throw new Error();
       }
