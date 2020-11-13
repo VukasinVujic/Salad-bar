@@ -21,6 +21,16 @@ const StateProvider = ({ children }: Children) => {
             list: action.payload,
             isIngredient: action.showIngredient,
           };
+        case "SEND_LIST":
+          return {
+            ...state,
+            list: action.payload,
+          };
+        case "SEND_IS_INGREDIENT":
+          return {
+            ...state,
+            isIngredient: action.showIngredient,
+          };
         case "SEND_LIST_SALADS":
           return {
             ...state,

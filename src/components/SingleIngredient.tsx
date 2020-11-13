@@ -4,6 +4,7 @@ import { store } from "../store";
 interface Props {
   index: number;
   onClick: (event: React.MouseEvent<HTMLDivElement>) => void;
+  onTagClick: (tagText: string) => void;
 }
 
 interface Ingredient {
@@ -19,8 +20,18 @@ const SingleIngredient = (props: Props) => {
 
   const getTags = () => {
     return ingredient.tags.map((value, index) => {
-      console.log(ingredient.tags);
-      return <li key={index}>{value}</li>;
+      return (
+        <li key={index}>
+          {" "}
+          <button
+            onClick={(event) =>
+              props.onTagClick((event.target as HTMLButtonElement).innerText)
+            }
+          >
+            {value}
+          </button>
+        </li>
+      );
     });
   };
 
