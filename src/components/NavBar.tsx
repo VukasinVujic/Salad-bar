@@ -16,15 +16,17 @@ interface Salad {
   tags: [];
   ingredients: [];
 }
+let newArray: number[] = [];
 
 const NavbAr = () => {
   const [ingredients, setIngredients] = useState<Ingredient[]>([]);
   const [salads, setSalads] = useState<Salad[]>([]);
   const [showIngredient, setShowIngredient] = useState(true);
+  const [clicked, setClicked] = useState<number[]>([]);
+  const [selectedColor, setSelectedColor] = useState("white");
   const globalState = useContext(store);
   const { dispatch } = globalState;
 
-  console.log(globalState);
   useEffect(() => {
     (async () => {
       const response = await axios.get(
@@ -51,21 +53,48 @@ const NavbAr = () => {
     dispatch({ type: "SEND_LIST_INGREDIENT", payload: salads });
   };
 
-  // const lala = () => {
-  //   console.log("aaaaaa");
-  // };
+  const showSingleItem = (arg: string) => {
+    // console.log(arg);
+  };
+
+  const toggle = (value: number) => {
+    if (newArray.includes(value)) {
+      newArray.splice(0, 0, value);
+      setClicked(newArray);
+    } else {
+      newArray.push(value);
+      setClicked(newArray);
+    }
+  };
+
+  const giveColor = (index: number) => {
+    // console.log("new array" + newArray);
+    // console.log("clicked " + clicked);
+    if (clicked.includes(index)) {
+      console.log("blue");
+      return "blue";
+    } else {
+      console.log("whitee");
+      return "white";
+    }
+  };
+
   const showList = () => {
     let saladOrIngredient: (Ingredient | Salad)[] = showIngredient
       ? ingredients
       : salads;
-    return saladOrIngredient.map((value) => {
+    return saladOrIngredient.map((value, index) => {
       return (
         <li
+          className="single-item"
+          style={{ background: giveColor(index) }}
           key={value.id}
-          // onClick={() => {
-          //   lala();
-          // }}
+          onClick={() => {
+            showSingleItem(globalState.state.list[index].id);
+            toggle(index);
+          }}
         >
+          {/* {globalState.state.list[index].id} */}
           {value.name}
         </li>
       );

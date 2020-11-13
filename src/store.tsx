@@ -10,19 +10,19 @@ type Children = {
 
 const StateProvider = ({ children }: Children) => {
   const [state, dispatch] = useReducer(
-    (state: any, action: { type: string; payload: string }) => {
+    (state: any, action: { type: string; payload: [] }) => {
       switch (action.type) {
         case "SEND_LIST_INGREDIENT":
-          return { ...state, lala: action.payload };
+          return { ...state, list: action.payload };
         case "SEND_LIST_SALADS":
-          return { ...state, lala: action.payload };
-
+          return { ...state, list: action.payload };
         default:
           throw new Error();
       }
     },
     initialState
   );
+
   return <Provider value={{ state, dispatch }}>{children}</Provider>;
 };
 
