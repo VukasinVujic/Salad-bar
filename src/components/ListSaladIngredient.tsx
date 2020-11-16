@@ -32,16 +32,15 @@ const ListSaladIngredient = () => {
   const showSingleItem = (arg: string) => {};
 
   const [nameSearch, setNameSearch] = useState<string>("");
+  console.log(globalState);
 
   useEffect(() => {
     (async () => {
-      console.log(++counter);
       const response = await axios.get(
         `https://5faa7264b5c645001602a988.mockapi.io/${
           globalState.state.isIngredient ? "ingredient" : "salad"
         }?name=${nameSearch}&orderBy=${orderBy}&order=${order}`
       );
-      console.log(response.data);
       dispatch({
         type: "SEND_LIST",
         payload: response.data,
@@ -68,6 +67,7 @@ const ListSaladIngredient = () => {
       })
       .map((value: Ingredient | Salad) => {
         var index = globalState.state.list.indexOf(value);
+        console.log(globalState.state);
         if (globalState.state.isIngredient) {
           return (
             <SingleIngredient

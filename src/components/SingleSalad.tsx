@@ -23,7 +23,6 @@ interface Salad {
 const SingleSalad = (props: Props) => {
   const globalState = useContext(store);
   const salad = globalState.state.list[props.index] as Salad;
-  console.log(salad);
   const getTags = () => {
     return salad.tags.map((index, value) => {
       return <li key={index}>{value}</li>;
